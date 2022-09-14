@@ -1,7 +1,5 @@
 # TPT design decisions FAQ
 
-Written mostly from [LBPHacker]'s perspective.
-
 ## <a name="good-cpu"></a> I have a very good CPU, why are frame rates so low in general?
 
 It's because these days, when CPU manufacturers have shifted their focus from single-core performance to efficiency and core count, a single one of your "very good" CPU's cores is probably about as powerful as a high-end single-core CPU from 2008, and since TPT does the majority of calculations on a single thread, and thus a single core, you get frame rates appropriate for such a CPU. See [Is TPT multithreaded?](#multithread-pls)
@@ -14,7 +12,7 @@ The following tasks run on separate threads:
 
  - Newtonian gravity simulation; you can see the effects of this running on a separate thread when you set up a path that includes Newtonian gravity elements (`WHOL`, `BHOL`, etc.) for energy particles (`PHOT`, etc.) to follow, and the stream of particles wavers slightly at times;
  - rendering of paste previews; custom elements don't show up in these previews because it's difficult to let the other thread know about custom elements;
- - a few others that aren't too closely related to the simulation, so I won't bother with listing them.
+ - a few others that aren't too closely related to the simulation.
  
 Everything else runs on the main thread. Yeah. See [Why isn't TPT fully multithreaded?](#why-not-fully-multithreaded)
 
